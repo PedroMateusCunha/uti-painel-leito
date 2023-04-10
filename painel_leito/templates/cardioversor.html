@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Painel de Leito</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+</head>
+<body>
+	<h1>Cardioversor</h1>
+    <table>
+        <tr>
+            <th>Informações</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Marca Passo</td>
+            <td>{{ marca_passo }}</td>
+        </tr>
+        <tr>
+            <td>Potência</td>
+            <td>{{ potencia }} J</td>
+        </tr> 
+        <tr>
+            <td>Frequência</td>
+            <td>{{ frequencia }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Cardioversor    </td>
+            <td>{{ ligado }}</td>
+        </tr>
+    </table>
+</body>
