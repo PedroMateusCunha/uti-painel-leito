@@ -2,75 +2,63 @@
 <html>
 <head>
 	<title>Painel de Leito</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
 </head>
 <body>
-	<header>
-		<h1>Painel de Leito</h1>
-	</header>
 
-	<main>
-		<section>
-			<h2>Bomba de Infusão</h2>
-			<div>
-				<label for="med1">Medicamento 1:</label>
-				<input type="number" id="med1" name="med1">
-				<label for="taxa_med1">Taxa:</label>
-				<input type="number" id="taxa_med1" name="taxa_med1"><br>
 
-				<label for="med2">Medicamento 2:</label>
-				<input type="number" id="med2" name="med2">
-				<label for="taxa_med2">Taxa:</label>
-				<input type="number" id="taxa_med2" name="taxa_med2"><br>
-
-				<label for="soro">Soro:</label>
-				<input type="number" id="soro" name="soro">
-				<label for="taxa_soro">Taxa:</label>
-				<input type="number" id="taxa_soro" name="taxa_soro"><br>
-
-				<button id="ligar_bomba">Ligar</button>
-				<button id="desligar_bomba">Desligar</button>
-			</div>
-		</section>
-
-		<section>
-			<h2>Respirador</h2>
-			<div>
-				<label for="irpm">IRPM:</label>
-				<input type="number" id="irpm" name="irpm">
-
-				<label for="vc">Volume Corrente:</label>
-				<input type="number" id="vc" name="vc">
-
-				<button id="ligar_respirador">Ligar</button>
-				<button id="desligar_respirador">Desligar</button>
-			</div>
-		</section>
-
-		<section>
-			<h2>Cardioversor</h2>
-			<div>
-				<label for="potencia">Potência:</label>
-				<input type="number" id="potencia" name="potencia">
-				
-				<label for="frequencia">Frequência:</label>
-				<input type="number" id="frequencia" name="frequencia">
-
-				<button id="ligar_cardioversor">Ligar</button>
-				<button id="desligar_cardioversor">Desligar</button>
-			</div>
-		</section>
-
-		<section>
-			<h2>Botão de Emergência</h2>
-			<div>
-				<button id="acionar_emergencia">Acionar</button>
-				<button id="desligar_emergencia">Desligar</button>
-			</div>
-		</section>
-	</main>
+	<h1>Painel de Leito</h1>
+            
+	{% include "sinais_vitais.html" %}
+	{% include "bomba_infusao.html" %}
+	{% include "respirador.html" %}
+	{% include "cardioversor.html" %}
+	{% include "botao.html" %}
 	
-	<footer>
-		<p>Desenvolvido por: [Nome da Equipe]</p>
-	</footer>
+	<table>
+		<thead>
+			<tr>
+				<th>Equipamento</th>
+				<th>Status</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Bomba de Infusão</td>
+				<td id="bomba-status"> Quantidades: {{ status }} <br> {{atualizacao}}</td>
+				<td>
+					<button id="bomba-ligar" onclick="ligarBomba()">Ligar</button>
+					<button id="bomba-desligar" onclick="desligarBomba()">Desligar</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Respirador</td>
+				<td id="respirador-status">Desligado</td>
+				<td>
+					<button id="respirador-ligar" onclick="ligarRespirador()">Ligar</button>
+					<button id="respirador-desligar" onclick="desligarRespirador()">Desligar</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Cardioversor</td>
+				<td id="cardioversor-status">Desligado</td>
+				<td>
+					<button id="cardioversor-ligar" onclick="ligarCardioversor()">Ligar</button>
+					<button id="cardioversor-desligar" onclick="desligarCardioversor()">Desligar</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Botão de Emergência</td>
+				<td id="botao-status">Desligado</td>
+				<td>
+					<button id="botao-acionar" onclick="acionarBotao()">Acionar</button>
+					<button id="botao-desligar" onclick="desligarBotao()">Desligar</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
-</html>
