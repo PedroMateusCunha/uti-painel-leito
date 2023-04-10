@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Painel de Leito</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+</head>
+<body>
+	<h2>Respirador</h2>
+    <table>
+        <tr>
+            <th>Informações</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>IRPM</td>
+            <td>{{ irpm }}</td>
+        </tr>
+        <tr>
+            <td>Volume Corrente</td>
+            <td>{{ volume_corrente }} J</td>
+        </tr> 
+    </table>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Respirador</td>
+            <td>{{ ligado }}</td>
+        </tr>
+    </table>
+</body>

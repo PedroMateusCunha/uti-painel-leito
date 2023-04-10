@@ -1,0 +1,20 @@
+services:
+  painel_leito:
+      container_name: ${APP_NAME:-painel_leito}-${ENV_NAME:-dev}
+      image: ${APP_NAME:-painel_leito}:${ENV_NAME:-dev}
+      build:
+        context: ./painel_leito
+        dockerfile: ./Dockerfile
+        args:
+          APP_NAME: ${APP_NAME:-painel_leito}
+          ENV_NAME: ${ENV_NAME:-dev}
+      ports:
+        - "${SINAIS_VITAIS_PORT:-7006}:8000"
+      volumes:
+        - ./painel_leito:/usr/app
+      restart: unless-stopped
+      healthcheck:
+        test: ["CMD-SHELL", "curl -f http://localhost:${BACKEND_PORT:-7006}/health || exit 1"]
+        interval: 1m
+        timeout: 10s
+        retries: 5

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Painel de Leito</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+</head>
+<body>
+	<h2>Sinais Vitais</h2>
+    <table>
+        <tr>
+            <th>Sinal</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Temperatura</td>
+            <td>{{ temperatura }} °C</td>
+        </tr>
+        <tr>
+            <td>Oxigenação</td>
+            <td>{{ spo2 }}%</td>
+        </tr>
+        <tr>
+            <td>Frequência Cardiaca</td>
+            <td>{{ freq_cardiaca }} bpm</td>
+        </tr>
+		<tr>
+            <td>Frequência Respiratoria</td>
+            <td>{{ freq_respiratoria }} rpm</td>
+        </tr>
+		<tr>
+            <td>Pressão Arterial</td>
+            <td>{{ pressao_arterial }} mmHg</td>
+        </tr>
+    </table>
+	<table>
+		<tr>
+			<th>Alertas</th>
+		</tr>
+		{% for alerta in alertas %}
+			<tr>
+				<td>{{ alerta }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</body>
