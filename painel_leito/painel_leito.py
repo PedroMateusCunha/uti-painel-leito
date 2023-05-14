@@ -1,32 +1,38 @@
+"""Modulo para gerenciamento do painel do leito hospitalar."""
 import requests
 # from fastapi import Request
-
+"""
+Classe para gerenciamento do painel do leito hospitalar
+"""
 class PainelDoLeito:
     def __init__(self): 
+        """
+        Metodo para inicializar os atributos do leito hospitalar
+        """
         self.dados_leito = {}
 
     def get_data_sinais_vitais(self):
-        # Obtém o status da Bomba de Infusão
+        """Obtém o status da Bomba de Infusão"""
         response = requests.get("http://10.0.0.254:7001/sinais_vitais")
         self.dados_leito.update(response.json())
     
     def get_data_bomba_infusao(self):
-        # Obtém o status da Bomba de Infusão
+        """Obtém o status da Bomba de Infusão"""
         response = requests.get("http://10.0.0.254:7002/status")
         self.dados_leito.update(response.json())
     
     def get_data_respirador(self):
-        # Obtém o status da Bomba de Infusão
+        """Obtém o status da Bomba de Infusão"""
         response = requests.get("http://10.0.0.254:7003/status")
         self.dados_leito.update(response.json())
 
     def get_data_cardioversor(self):
-        # Obtém o status da Bomba de Infusão
+        """Obtém o status da Bomba de Infusão"""
         response = requests.get("http://10.0.0.254:7004/status")
         self.dados_leito.update(response.json())
 
     def get_data_botao_emergencia(self):
-        # Obtém o status da Bomba de Infusão
+        """Obtém o status da Bomba de Infusão"""
         response = requests.get("http://10.0.0.254:7005/status")
         self.dados_leito.update(response.json())
     

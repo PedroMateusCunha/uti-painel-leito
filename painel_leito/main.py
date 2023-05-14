@@ -1,3 +1,7 @@
+"""
+Modulo para inicialização e disponilibilização do serviço
+relacionado ao painel do leito hospitalar.
+"""
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -10,12 +14,13 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-
+    """Metodo para roteamento inicial do componente"""
     return templates.TemplateResponse("index.html",
                                       {"request": request})
 
 @app.get("/sinais", response_class=HTMLResponse)
 async def sinais(request: Request):
+    """Metodo para roteamento para checagem dos sinais vitais do paciente"""
     response = requests.get("http://10.0.0.254:7001/status")
     data = response.json()["sinais_vitais"]
 
@@ -30,6 +35,7 @@ async def sinais(request: Request):
 
 @app.get("/bomba", response_class=HTMLResponse)
 async def bomba(request: Request):
+    """Metodo para roteamento para acionamento da bomba de infusão"""
     response = requests.get("http://10.0.0.254:7002/status")
     data = response.json()["bomba_infusao"]
     
@@ -50,6 +56,7 @@ async def bomba(request: Request):
 
 @app.get("/respirador", response_class=HTMLResponse)
 async def respirador(request: Request):
+    """Metodo para roteamento para acionamento do respirador"""
     response = requests.get("http://10.0.0.254:7003/status")
     data = response.json()["respirador"]
 
@@ -66,6 +73,7 @@ async def respirador(request: Request):
 
 @app.get("/cardioversor", response_class=HTMLResponse)
 async def cardioversor(request: Request):
+    """Metodo para roteamento para acionamento do cardioversor"""
     response = requests.get("http://10.0.0.254:7004/status")
     data = response.json()["cardioversor"]
 
@@ -83,6 +91,7 @@ async def cardioversor(request: Request):
  
 @app.get("/botao", response_class=HTMLResponse)
 async def botao(request: Request):
+    """Metodo para roteamento para verificar acionamento do botao de emergia"""
     response = requests.get("http://10.0.0.254:7005/status")
     data = response.json()["botao_emergencia"]
 
