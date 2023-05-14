@@ -38,8 +38,8 @@ async def bomba(request: Request):
     """Metodo para roteamento para acionamento da bomba de infusão"""
     response = requests.get("http://10.0.0.254:7002/status")
     data = response.json()["bomba_infusao"]
-    
-    if data['ligado'] == True:
+
+    if data['ligado'] is True:
         ligado = "Ligado"
     else:
         ligado = "Desligado"
@@ -60,7 +60,7 @@ async def respirador(request: Request):
     response = requests.get("http://10.0.0.254:7003/status")
     data = response.json()["respirador"]
 
-    if data['ligado'] == True:
+    if data['ligado'] is True:
         ligado = "Ligado"
     else:
         ligado = "Desligado"
@@ -77,7 +77,7 @@ async def cardioversor(request: Request):
     response = requests.get("http://10.0.0.254:7004/status")
     data = response.json()["cardioversor"]
 
-    if data['ligado'] == True:
+    if data['ligado'] is True:
         ligado = "Ligado"
     else:
         ligado = "Desligado"
@@ -88,14 +88,14 @@ async def cardioversor(request: Request):
                                         "potencia": data["potencia"],
                                         "frequencia": data["frequencia"],
                                         "ligado": ligado})
- 
+
 @app.get("/botao", response_class=HTMLResponse)
 async def botao(request: Request):
     """Metodo para roteamento para verificar acionamento do botao de emergia"""
     response = requests.get("http://10.0.0.254:7005/status")
     data = response.json()["botao_emergencia"]
 
-    if data['ligado'] == True:
+    if data['ligado'] is True:
         ligado = "Ligado"
     else:
         ligado = "Desligado"
