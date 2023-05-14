@@ -12,27 +12,27 @@ class PainelDoLeito:
 
     def get_data_sinais_vitais(self):
         """Obtém o status da Bomba de Infusão"""
-        response = requests.get("http://10.0.0.254:7001/sinais_vitais")
+        response = requests.get("http://10.0.0.254:7001/sinais_vitais", timeout=5)
         self.dados_leito.update(response.json())
 
     def get_data_bomba_infusao(self):
         """Obtém o status da Bomba de Infusão"""
-        response = requests.get("http://10.0.0.254:7002/status")
+        response = requests.get("http://10.0.0.254:7002/status", timeout=5)
         self.dados_leito.update(response.json())
 
     def get_data_respirador(self):
         """Obtém o status da Bomba de Infusão"""
-        response = requests.get("http://10.0.0.254:7003/status")
+        response = requests.get("http://10.0.0.254:7003/status", timeout=5)
         self.dados_leito.update(response.json())
 
     def get_data_cardioversor(self):
         """Obtém o status da Bomba de Infusão"""
-        response = requests.get("http://10.0.0.254:7004/status")
+        response = requests.get("http://10.0.0.254:7004/status", timeout=5)
         self.dados_leito.update(response.json())
 
     def get_data_botao_emergencia(self):
         """Obtém o status da Bomba de Infusão"""
-        response = requests.get("http://10.0.0.254:7005/status")
+        response = requests.get("http://10.0.0.254:7005/status", timeout=5)
         self.dados_leito.update(response.json())
 
 

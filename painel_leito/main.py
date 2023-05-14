@@ -52,7 +52,7 @@ async def bomba(request: Request):
                                         "qtd_med1": data["quantidades"]["med1"],
                                         "qtd_med2": data["quantidades"]["med2"],
                                         "qtd_soro": data["quantidades"]["soro"],
-                                        "ligado": data["ligado"]})
+                                        "ligado": ligado})
 
 @app.get("/respirador", response_class=HTMLResponse)
 async def respirador(request: Request):
