@@ -21,7 +21,7 @@ async def home(request: Request):
 @app.get("/sinais", response_class=HTMLResponse)
 async def sinais(request: Request):
     """Metodo para roteamento para checagem dos sinais vitais do paciente"""
-    response = requests.get("http://10.0.0.254:7001/status")
+    response = requests.get("http://10.0.0.254:7001/status", timeout=5)
     data = response.json()["sinais_vitais"]
 
     return templates.TemplateResponse("sinais_vitais.html",
@@ -36,7 +36,7 @@ async def sinais(request: Request):
 @app.get("/bomba", response_class=HTMLResponse)
 async def bomba(request: Request):
     """Metodo para roteamento para acionamento da bomba de infusão"""
-    response = requests.get("http://10.0.0.254:7002/status")
+    response = requests.get("http://10.0.0.254:7002/status", timeout=5)
     data = response.json()["bomba_infusao"]
 
     if data['ligado'] is True:
@@ -57,7 +57,7 @@ async def bomba(request: Request):
 @app.get("/respirador", response_class=HTMLResponse)
 async def respirador(request: Request):
     """Metodo para roteamento para acionamento do respirador"""
-    response = requests.get("http://10.0.0.254:7003/status")
+    response = requests.get("http://10.0.0.254:7003/status", timeout=5)
     data = response.json()["respirador"]
 
     if data['ligado'] is True:
@@ -74,7 +74,7 @@ async def respirador(request: Request):
 @app.get("/cardioversor", response_class=HTMLResponse)
 async def cardioversor(request: Request):
     """Metodo para roteamento para acionamento do cardioversor"""
-    response = requests.get("http://10.0.0.254:7004/status")
+    response = requests.get("http://10.0.0.254:7004/status", timeout=5)
     data = response.json()["cardioversor"]
 
     if data['ligado'] is True:
@@ -92,7 +92,7 @@ async def cardioversor(request: Request):
 @app.get("/botao", response_class=HTMLResponse)
 async def botao(request: Request):
     """Metodo para roteamento para verificar acionamento do botao de emergia"""
-    response = requests.get("http://10.0.0.254:7005/status")
+    response = requests.get("http://10.0.0.254:7005/status", timeout=5)
     data = response.json()["botao_emergencia"]
 
     if data['ligado'] is True:
