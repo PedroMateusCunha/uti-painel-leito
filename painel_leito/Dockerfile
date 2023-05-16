@@ -14,8 +14,8 @@ WORKDIR $USER_HOME
 COPY . .
 
 RUN python3 -m pip install --upgrade pip && \
-    pip install -r ${USER_HOME}/painel-leito/requirements/requirements.${ENV_NAME}.txt
+    pip install -r ${USER_HOME}/painel_leito/requirements/requirements.${ENV_NAME}.txt
 
-WORKDIR ${USER_HOME}/painel-leito/
+WORKDIR ${USER_HOME}/painel_leito/
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000","--reload"]
