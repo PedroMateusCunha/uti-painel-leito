@@ -8,13 +8,22 @@ services:
         args:
           APP_NAME: ${APP_NAME:-painel_leito}
           ENV_NAME: ${ENV_NAME:-dev}
+      env_file:
+        - .env
       ports:
         - "${SINAIS_VITAIS_PORT:-7006}:8000"
       volumes:
         - ./painel_leito:/usr/app
       restart: unless-stopped
+      
       healthcheck:
         test: ["CMD-SHELL", "curl -f http://localhost:${BACKEND_PORT:-7006}/health || exit 1"]
         interval: 1m
         timeout: 10s
         retries: 5
+      networks:
+        - uti-monitor-sinais-vitais_projeto_uti
+
+networks:
+  uti-monitor-sinais-vitais_projeto_uti:
+    external: true

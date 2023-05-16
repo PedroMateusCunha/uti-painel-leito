@@ -12,12 +12,22 @@
 
 	<h1>Painel de Leito</h1>
             
-	{% include "sinais_vitais.html" %}
-	{% include "bomba_infusao.html" %}
-	{% include "respirador.html" %}
-	{% include "cardioversor.html" %}
-	{% include "botao.html" %}
-	
+	{% include "sinais_vitais.html" with context %}
+	<br>
+	<br>
+	{% include "bomba_infusao.html" with context %}
+	<br>
+	<br>
+	{% include "respirador.html" with context %}
+	<br>
+	<br>
+	{% include "cardioversor.html" with context %}
+	<br>
+	<br>
+	{% include "botao.html" with context %}
+	<br>
+	<br>
+	<h2>Equipamentos</h2>
 	<table>
 		<thead>
 			<tr>
@@ -29,7 +39,7 @@
 		<tbody>
 			<tr>
 				<td>Bomba de Infusão</td>
-				<td id="bomba-status"> Quantidades: {{ status }} <br> {{atualizacao}}</td>
+				<td id="bomba-status"> {{ bomba_infusao_ligado }}</td>
 				<td>
 					<button id="bomba-ligar" onclick="ligarBomba()">Ligar</button>
 					<button id="bomba-desligar" onclick="desligarBomba()">Desligar</button>
@@ -37,7 +47,7 @@
 			</tr>
 			<tr>
 				<td>Respirador</td>
-				<td id="respirador-status">Desligado</td>
+				<td id="respirador-status">{{ respirador_ligado }}</td>
 				<td>
 					<button id="respirador-ligar" onclick="ligarRespirador()">Ligar</button>
 					<button id="respirador-desligar" onclick="desligarRespirador()">Desligar</button>
@@ -45,7 +55,7 @@
 			</tr>
 			<tr>
 				<td>Cardioversor</td>
-				<td id="cardioversor-status">Desligado</td>
+				<td id="cardioversor-status">{{ cardioversor_ligado }}</td>
 				<td>
 					<button id="cardioversor-ligar" onclick="ligarCardioversor()">Ligar</button>
 					<button id="cardioversor-desligar" onclick="desligarCardioversor()">Desligar</button>
@@ -53,7 +63,7 @@
 			</tr>
 			<tr>
 				<td>Botão de Emergência</td>
-				<td id="botao-status">Desligado</td>
+				<td id="botao-status">{{ botao_ligado }}</td>
 				<td>
 					<button id="botao-acionar" onclick="acionarBotao()">Acionar</button>
 					<button id="botao-desligar" onclick="desligarBotao()">Desligar</button>
@@ -62,3 +72,101 @@
 		</tbody>
 	</table>
 </body>
+
+<script>
+    function ligarBomba() {
+        fetch("/ligar_bomba", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function desligarBomba() {
+        fetch("/desligar_bomba", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function ligarRespirador() {
+        fetch("/ligar_respirador", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function desligarRespirador() {
+        fetch("/desligar_respirador", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function ligarCardioversor() {
+        fetch("/ligar_cardioversor", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function desligarCardioversor() {
+        fetch("/desligar_cardioversor", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function acionarBotao() {
+        fetch("/acionar_botao", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+
+	function desligarBotao() {
+        fetch("/desligar_botao", { method: 'GET' })  // Faz uma requisição GET para a rota "/ligar_bomba"
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+				location.reload();  // Exibe a resposta no console
+            })
+            .catch(error => {
+                console.error(error);  // Exibe o erro no console, se ocorrer algum
+            });
+    }
+</script>
