@@ -1,3 +1,7 @@
+"""
+Modulo para inicialização e disponilibilização do serviço
+relacionado ao painel do leito hospitalar.
+"""
 import time
 import threading
 from fastapi import FastAPI, Request
@@ -54,7 +58,7 @@ context = update_context()
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    global context
+    """Metodo para roteamento inicial do componente"""    global context
     context = update_context()
     context["request"] = request
     update_painel()
