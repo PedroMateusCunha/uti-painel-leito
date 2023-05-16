@@ -58,7 +58,8 @@ context = update_context()
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    """Metodo para roteamento inicial do componente"""    global context
+    """Metodo para roteamento inicial do componente"""
+    global context
     context = update_context()
     context["request"] = request
     update_painel()
